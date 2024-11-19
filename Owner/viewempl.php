@@ -4,48 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Employees</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-body {
-    background-image: url('../images/1.jpg'); /* Replace 'your_background_image.jpg' with your image path */
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    margin: 0;
-    padding: 0;
-}
-
-
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
         .container {
-            max-width: 800px;
-            margin: 20px auto;
+            max-width: 900px;
+            margin: 20px;
             padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #34495e;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         h2 {
             text-align: center;
+            color: #e74c3c;
+            margin-bottom: 20px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 20px;
         }
 
         table, th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
+            border: 1px solid #7f8c8d;
+            padding: 12px;
             text-align: left;
         }
 
         th {
-            background-color: #f2f2f2;
+            background-color: #e74c3c;
+            color: white;
         }
 
         tr:nth-child(even) {
-            background-color: #f9f9f9;
+            background-color: #3b5998;
+        }
+
+        tr:hover {
+            background-color: #2980b9;
         }
 
         .back-button, .delete-button, .create-employee-button {
@@ -53,22 +69,23 @@ body {
             padding: 10px 20px;
             margin-top: 20px;
             margin-right: 10px;
-            background-color: #4CAF50;
+            background-color: #e74c3c;
             color: white;
             text-decoration: none;
             border-radius: 5px;
+            transition: background-color 0.3s ease;
         }
 
-        .back-button:hover, .delete-button:hover, .create-employee-button:hover {
-            background-color: #45a049;
+        .back-button:hover, .create-employee-button:hover {
+            background-color: #c0392b;
         }
 
         .delete-button {
-            background-color: #f44336;
+            background-color: #e74c3c;
         }
 
         .delete-button:hover {
-            background-color: #da190b;
+            background-color: #c0392b;
         }
     </style>
 </head>

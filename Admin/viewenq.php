@@ -91,103 +91,119 @@ function generateExcel($data) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Enquiries</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-image: url('../images/1.png'); /* Adjust the image path */
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
+            font-family: 'Roboto', sans-serif;
+            background-color: #2c3e50;
+            color: #ecf0f1;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
+
+        .container {
+            max-width: 900px;
+            margin: 20px;
+            padding: 20px;
+            background-color: #34495e;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        h2 {
+            text-align: center;
+            color: #e74c3c;
+            margin-bottom: 20px;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
         }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
+
+        table, th, td {
+            border: 1px solid #7f8c8d;
+            padding: 12px;
             text-align: left;
         }
+
         th {
-            background-color: #f2f2f2;
+            background-color: #e74c3c;
+            color: white;
         }
+
         tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: #3b5998;
         }
-        h2 {
-            text-align: center;
+
+        tr:hover {
+            background-color: #2980b9;
         }
+
         .button-container {
             text-align: center;
-            margin-bottom: 20px;
+            margin-top: 20px;
         }
-        .export-button {
-            background-color: #4CAF50; /* Green */
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
+
+        .export-button, .return-button {
             display: inline-block;
-            font-size: 16px;
+            padding: 10px 20px;
+            margin-top: 20px;
             margin-right: 10px;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-        .export-button:hover {
-            background-color: #45a049; /* Darker Green */
-        }
-        .return-button {
-            background-color: #008CBA; /* Blue */
-            border: none;
+            background-color: #e74c3c;
             color: white;
-            padding: 10px 20px;
-            text-align: center;
             text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin-left: 10px;
-            cursor: pointer;
-            border-radius: 4px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
         }
-        .return-button:hover {
-            background-color: #0073e6; /* Darker Blue */
+
+        .export-button:hover, .return-button:hover {
+            background-color: #c0392b;
         }
     </style>
 </head>
 <body>
-    <h2>Enquiries</h2>
+    <div class="container">
+        <h2>Enquiries</h2>
 
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Contact</th>
-        </tr>
-        <?php
-        if ($enquiry_result->num_rows > 0) {
-            while ($row = $enquiry_result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . $row["name"] . "</td>";
-                echo "<td>" . $row["email"] . "</td>";
-                echo "<td>" . $row["contact"] . "</td>";
-                echo "</tr>";
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Contact</th>
+            </tr>
+            <?php
+            if ($enquiry_result->num_rows > 0) {
+                while ($row = $enquiry_result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . $row["name"] . "</td>";
+                    echo "<td>" . $row["email"] . "</td>";
+                    echo "<td>" . $row["contact"] . "</td>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='3'>No enquiries found</td></tr>";
             }
-        } else {
-            echo "<tr><td colspan='3'>No enquiries found</td></tr>";
-        }
-        ?>
-    </table>
-    <div class="button-container">
-        <button onclick="location.href='exportenq.php'" class="export-button">Export Data</button>
-        <button onclick="location.href='admin_dashboard.php'" class="return-button">Return to Home</button>
+            ?>
+        </table>
+        <div class="button-container">
+            <button onclick="location.href='exportenq.php'" class="export-button">Export Data</button>
+            <button onclick="location.href='admin_dashboard.php'" class="return-button">Return to Home</button>
+        </div>
     </div>
 </body>
 </html>
-
 
 <?php
 // Close database connection
